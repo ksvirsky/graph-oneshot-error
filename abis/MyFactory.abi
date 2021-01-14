@@ -1,0 +1,1 @@
+[{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"addr","type":"address"}],"name":"NewContract","type":"event"},{"inputs":[],"name":"createContract","outputs":[],"stateMutability":"nonpayable","type":"function"}]

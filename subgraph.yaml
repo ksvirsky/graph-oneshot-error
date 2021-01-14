@@ -1,0 +1,45 @@
+specVersion: 0.0.2
+description: Gravatar for Ethereum
+repository: https://github.com/graphprotocol/example-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: MyFactory
+    network: rinkeby
+    source:
+      address: '0xD5FFCF8FBb1590270F0355B5cAdFCfC0B737E287'
+      abi: MyFactory
+      startBlock: 7895454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Gravatar
+      abis:
+        - name: MyFactory
+          file: ./abis/MyFactory.abi
+      eventHandlers:
+        - event: NewContract(address)
+          handler: handleNewContract
+      file: ./src/factory.ts
+templates:
+  - name: MyContract
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      abi: MyContract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      entities:
+        - Gravatar
+      file: ./src/contract.ts
+      abis:
+        - name: MyContract
+          file: ./abis/MyContract.abi
+      eventHandlers:
+        - event: SomeEvent()
+          handler: handleSomeEvent
